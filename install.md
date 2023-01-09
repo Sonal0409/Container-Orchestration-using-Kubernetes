@@ -7,7 +7,9 @@ Execute below commands to Configure Docker Daemon:
 sudo su –
  
 sudo wget https://raw.githubusercontent.com/lerndevops/labs/master/kubernetes/0-install/daemon.json -P /etc/docker
+
    sudo systemctl restart docker.service
+   
    sudo service docker status
 ## Initialize kubernetes Master Node
  

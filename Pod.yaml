@@ -1,0 +1,91 @@
+
+
+KIND:     Pod
+VERSION:  v1
+
+DESCRIPTION:
+     Pod is a collection of containers that can run on a host. This resource is
+     created by clients and scheduled onto hosts.
+
+Multi Container Pod
+========================
+ideally, we always create a pod with single containers
+
+Scenarios:
+
+ > 2 tightly coupled container which are sharing some data
+
+ > if you want 2 application to have same ip address
+
+ > if you have scenario where 2 application have to run on same node always
+
+ > In multi container pod we will never have container of same Image
+
+ > in multi container pods, container share same network, so container with same port cannot run 
+
+
+In k8s we always write a object definition file to create Pods
+
+These files or manifests are written in Yaml
+
+vim multicontainer-pod.yaml
+
+# indicates the code schema that k8s will use to create a POD 
+# every object is k8s will have its apiVersion defined
+# you cannot change it.
+# kind of object to be created. value is provided by k8s
+# labels are mandatory for POD, they helps us to identify a group of pods in cluster
+
+apiVersion: v1
+kind: Pod 
+metadata:
+  name: multi-cont-pod2
+  labels:
+   author: sonal
+   role: dev
+spec:
+  containers:
+   - name: c1
+     image: httpd
+   - name: c2
+     image: tomcat
+   - name: c3
+     image: ubuntu
+     command: ["bash", "-c", "sleep 6000"]
+
+
+kubectl create -f multicont-pod.yml
+kubectl get pods
+kubectl get pods -o wide
+
+Steps to troubleshoot if the pods fails:
+
+kubectl describe pod multi-cont-pod1 | less
+
+kubectl logs multi-cont-pod1 -c c2
+
+kubectl delete pods --all
+
+kubectl explain pod | less
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

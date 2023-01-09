@@ -37,7 +37,12 @@ Step 2: ON ALL Worker Nodes
 
 
 Configure Docker Daemon: 
+
 sudo su - 
+
+hostnaem WORKER1
+
+sudo su -
 
    sudo wget https://raw.githubusercontent.com/lerndevops/labs/master/kubernetes/0-install/daemon.json -P /etc/docker
    

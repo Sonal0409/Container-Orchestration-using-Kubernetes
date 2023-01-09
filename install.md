@@ -40,7 +40,7 @@ Configure Docker Daemon:
 
 sudo su - 
 
-hostnaem WORKER1
+hostname WORKER1
 
 sudo su -
 

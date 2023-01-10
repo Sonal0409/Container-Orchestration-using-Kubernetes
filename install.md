@@ -75,7 +75,7 @@ Execute below steps:
 On Master Node:
 ==================
 
-kubectl delete node <nodename>
+kubectl delete node nodename
 
  kubectl get nodes
  

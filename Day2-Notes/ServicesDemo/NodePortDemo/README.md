@@ -25,6 +25,15 @@ Copy the node port.
   
 Access the pod application by using MASTER VM desktop and node port
 ========================================
-  
+
+Go to Matser VM, and click on Desktop
+
+Open the browser and give:
+
+localhost:32111
+
+You will see the request sent to your pod.
+
+
   
   

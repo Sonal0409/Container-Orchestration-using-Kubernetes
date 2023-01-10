@@ -1,0 +1,195 @@
+command to insatll nginx controller
+
+https://github.com/kubernetes/ingress-nginx/blob/main/docs/deploy/index.md
+
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.2.1/deploy/static/provider/cloud/deploy.yaml
+
+Create 2 Pods
+
+kubectl run pod1 --image nginx
+kubectl run pod2 --image nginx
+
+Create 2 services:
+
+kubectl expose pod pod1 --name service1 --port=80 --target-port=80
+kubectl expose pod pod2 --name service2 --port=80 --target-port=80
+
+kubectl get svc  ==> copy the ipaddress
+
+service1     ClusterIP   10.8.4.0     <none>        80/TCP    19s
+service2     ClusterIP   10.8.2.113   <none>        80/TCP    9s
+
+Create a front end pod
+
+kubectl run frontend-pod --image ubuntu --command -- sleep 36000
+
+go inside frontend pod
+
+kubectl exec -it frontend-pod -- bash
+
+apt-get update && apt-get install curl nano
+curl service1 ipaddress
+curl service2 ipaddress
+
+Create Ingress object:
+
+ vim ingress.yml
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: name-virtual-host-ingress
+spec:
+ 
+  rules:
+  - host: website01.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: servic1
+            port:
+              number: 80
+  - host: website02.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: servic2
+            port:
+              number: 80
+
+
+kubectl create -f ingress.yml
+
+kubectl get ingress
+kubectl describe ingress name-virtual-host-ingress
+
+Update incress class in the yaml file
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: name-virtual-host-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: website01.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: servic1
+            port:
+              number: 80
+  - host: website02.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: servic2
+            port:
+              number: 80
+
+kubectl get ingressclass
+
+Update YAML file and apply
+
+kubectl apply -f ingress.yml
+
+
+
+kubectl get svc
+kubectl get svc -n ingress-nginx
+
+Copy the service details
+
+Copy the load balancer Ip address..
+
+34.72.168.155
+
+go to GCP--> burger menu -->networkservice --> load balancer click on it --frontend check for ip
+Now go the frontend pod and update the hostdetails to ping the ingress service
+
+
+kubectl exec -it frontend-pod -- bash
+
+nano /etc/hosts
+
+make an entry
+
+## loadbalancer ip hoatname1 hostname2
+
+34.135.243.240 website01.example.com website02.example.com
+
+ctl x y enter
+
+curl website01.example.com
+
+curl website02.example.com
+
+
+Update the pods index.html as both have same content
+
+kubectl exec -it pod1 -- bash
+
+cd /usr/share/nginx/html
+
+echo "this is website1" > index.html
+
+comeout of pod
+
+
+kubectl exec -it pod2 -- bash
+
+cd /usr/share/nginx/html
+
+echo "this is website2" > index.html
+
+comeout of pod
+
+
+kubectl exec -it frontend-pod -- bash
+
+curl website01.example.com
+
+curl website02.example.com
+
+It will work fine
+
+Now to access for laptop browser.. you need to update the hosts file on windows
+
+Press the Windows key.
+Type Notepad in the search field.
+In the search results, right-click Notepad and select Run as administrator.
+From Notepad, open the following file: c:\Windows\System32\Drivers\etc\hosts.
+Make the necessary changes to the file.
+Select File > Save to save your changes.
+
+
+Make an entry like this:
+
+34.135.243.240 website01.example.com website02.example.com
+
+save the file
+
+go to browser and type website01.example.com
+
+
+
+
+
+
+
+
+
+
+
+

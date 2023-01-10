@@ -18,7 +18,7 @@ kubectl get all
 
 kubectl get svc
 
-service/mysvc        NodePort    10.105.31.132    <none>        80:32111/TCP   6s
+service/mysvc        NodePort    10.105.31.132    <none>        80:32111/TCP
   
 Copy the node port.
 

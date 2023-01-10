@@ -120,13 +120,21 @@ OR
 all 3 nodes recovered: 
 
 Master Node: 
+
 kubeadm reset --force
+
 rm -rf /var/lib/kubelet /etc/kubernetes /var/lib/etcd $HOME/.kube
+
 sudo kubeadm init 
+
 sudo mkdir -p $HOME/.kube
+
    sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+   
    sudo chown $(id -u):$(id -g) $HOME/.kube/config
+   
 kubectl get nodes
+
 sudo kubeadm token create --print-join-command 
 
 Then on worker nodes we just need to: 

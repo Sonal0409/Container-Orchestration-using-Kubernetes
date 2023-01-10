@@ -10,6 +10,9 @@ Validate:
 ====================================
 
 kubectl apply -f job.yaml
+
 kubectl get jobs -o wide
+
 kubectl get pods -o wide
+
 kubectl describe pod pi-wf7bm

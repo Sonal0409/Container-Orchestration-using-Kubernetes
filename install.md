@@ -65,3 +65,47 @@ Validate on master node
 kubectl get nodes
 
 kubectl get nodes -o wide
+
+
+If nodes are with status as NotReady, then delete the node and join it again in the cluster
+===================================
+
+Execute below steps:
+
+On Master Node:
+==================
+
+kubectl delete node <nodename>
+
+ kubectl get nodes
+ 
+On the same Worker node that we have to delete:
+============================================
+ 
+ kubeadm reset --force
+ 
+On master Node:
+======================================
+ 
+generate the token again, execute below command:
+  
+sudo kubeadm token create --print-join-command 
+ 
+ Copy the token
+ 
+On Worker Node:
+===========================
+ 
+ Copy the token, the node will join the master node
+ 
+On Master Node:
+ ==================
+ 
+ kubectl get nodes
+ 
+ 
+ 
+ 
+ 
+ 
+ 

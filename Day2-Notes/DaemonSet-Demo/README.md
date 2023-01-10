@@ -1,14 +1,17 @@
 
 Lab execution Steps for DaemonSet demo:
+
 ========================================
 
 
 1. Create Daemon Set in the cluster
+
 ===================================
 
 kubectl create -f https://raw.githubusercontent.com/Sonal0409/Container-Orchestration-using-Kubernetes/main/Day2-Notes/DaemonSet-Demo/DaemonSet.yml
 
 2. Validate if single pod is created on every worker node
+
 ====================================
 
 kubectl get pods -o wide

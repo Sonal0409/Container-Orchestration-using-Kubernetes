@@ -42,5 +42,8 @@ Scale down the replicas for the current replicaSet
  
  kubectl get pods -o wide
 
-  
+ Delete Replicaset
+ ==============================
+ 
+ kubectl delete replicaset myrs
   

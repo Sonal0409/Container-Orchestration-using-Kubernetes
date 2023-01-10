@@ -104,7 +104,40 @@ On Master Node:
  kubectl get nodes
  
  
- 
+ If Master and worker Nodes are Not Ready, try these 2 solutions:
+ ==================================================
+
+
+I set it as below and restarted lab.. its fix issue and all node in ready state.. 
+
+sudo hostnamectl set-hostname master
+sudo hostnamectl set-hostname worker1
+sudo hostnamectl set-hostname worker2
+
+
+OR
+
+all 3 nodes recovered: 
+
+Master Node: 
+kubeadm reset --force
+rm -rf /var/lib/kubelet /etc/kubernetes /var/lib/etcd $HOME/.kube
+sudo kubeadm init 
+sudo mkdir -p $HOME/.kube
+   sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+   sudo chown $(id -u):$(id -g) $HOME/.kube/config
+kubectl get nodes
+sudo kubeadm token create --print-join-command 
+
+Then on worker nodes we just need to: 
+
+kubeadm reset --force
+sudo kubeadm join ...... the value collected from Master Node
+no need to install the network again
+
+
+
+
  
  
  

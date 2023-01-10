@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata: 
+ name: mysvc1
+spec:
+ type: ClusterIP
+ selector:
+  type: webserver
+ ports:
+ - targetPort: 80
+   port: 80

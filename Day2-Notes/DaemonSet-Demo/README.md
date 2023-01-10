@@ -20,5 +20,12 @@ kubectl get pods -o wide
     A daemonset is created with desired pods as 2
     
  
+ Note:
+ ========
  If a new node is added to the cluster,a new pod will be created on the new node also.
  Desired count would have increased to 3.
+ 
+ Delete the DaemonSets:
+ ====================
+ 
+ kubectl delete daemonset myds

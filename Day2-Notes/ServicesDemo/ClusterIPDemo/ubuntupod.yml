@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+ name: ubuntupod
+ labels:
+  role: dev
+spec:
+ containers:
+  - name: c1
+    image: ubuntu
+    args: [/bin/bash, -c, 'sleep 6000']

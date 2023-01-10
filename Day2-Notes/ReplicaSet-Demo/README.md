@@ -31,12 +31,16 @@ kubectl get pods -o wide
 Scale up the replicas for the current replicaSet
 =================================================
 
-kubectl scale --replicas=5 replicaset rsname
+kubectl scale --replicas=5 replicaset myrs
+
+kubectl get pods -o wide
 
 Scale down the replicas for the current replicaSet
 ===================================================
 
- kubectl scale --replicas=2 replicaset rsname
+ kubectl scale --replicas=2 replicaset myrs
+ 
+ kubectl get pods -o wide
 
   
   

@@ -2,7 +2,8 @@ apiVersion: apps/v1
 kind: DaemonSet
 metadata:
  name: mydsspec:
- selector:  matchLabels:
+ selector:  
+  matchLabels:
     type: webserver 
  template:
   metadata:   

@@ -1,0 +1,76 @@
+Scheduling in kubernetes using:
+****************
+
+NodeName:
+
+Create a yaml file as given below : 
+In the spec section of pod, write the node name where you want to scehdule the pod
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubeserve
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: kubeserve
+  template:
+    metadata:
+      name: kubeserve
+      labels:
+        app: kubeserve
+    spec:
+      nodeName: gke-cluster-1-default-pool-e18bdb3b-3h5s
+      containers:
+      - image: leaddevops/kubeserve:v1
+        name: app
+
+save the file and execute the yaml
+
+you will see both the pod is scheduled on your mentioned node
+
+Node Selector:
+************************
+
+$ kubectl get nodes
+
+every node has multiple labels:
+
+$ kubectl describe node <node Name>
+
+
+Add your custom labels to all the nodes:
+
+we will add label as  disk=hdd ===>  to node 1 and node 3
+we will add lable as  disk=ssd ===> to node 2
+
+$ kubectl label node <nodename1> disk=hdd
+
+$ kubectl label node <nodename3> disk=hdd
+
+$ kubectl label node <nodename2> disk=ssd
+kubectl label node gke-cluster-1-default-pool-e18bdb3b-3l9r disk=ssd
+
+Now create a yaml file to deploy pods with node selector
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubeserve
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: kubeserve
+  template:
+    metadata:
+      name: kubeserve
+      labels:
+        app: kubeserve
+    spec:
+      nodeSelector:
+       disk: ssd
+      containers:
+      - image: leaddevops/kubeserve:v1
+        name: app

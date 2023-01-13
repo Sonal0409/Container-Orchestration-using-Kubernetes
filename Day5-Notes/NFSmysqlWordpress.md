@@ -82,6 +82,19 @@ kubectl get pods
 
 ## Create a WordPress manifest file and deploy it using host-path-based persistent volume
 
+...
+
+kubectl apply -f https://raw.githubusercontent.com/Sonal0409/Container-Orchestration-using-Kubernetes/main/Day5-Notes/wordpress.yml
+
+...
+
+kubectl get all
+kubectl get pv
+kubectl get pvc
+kubectl get pods
+
+Then, open the browser and put the below URL to access the WordPress application
+http://localhost:<node_port>
 
 
 

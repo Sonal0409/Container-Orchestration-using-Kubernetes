@@ -62,8 +62,11 @@ sudo apt install nfs-common
 
 ## Create a MySQL manifest file and deploy it using NFS-based persistent volume
 
+...
 
+kubectl apply -f https://raw.githubusercontent.com/Sonal0409/Container-Orchestration-using-Kubernetes/main/Day5-Notes/mysql.yml
 
+...
 
 Note: The below section may change if you have a different NFS server and share folder available:
 
@@ -71,6 +74,11 @@ Note: The below section may change if you have a different NFS server and share 
     path: /data
     server: 172.31.58.69
 
+
+kubectl get all
+kubectl get pv
+kubectl get pvc
+kubectl get pods
 
 ## Create a WordPress manifest file and deploy it using host-path-based persistent volume
 

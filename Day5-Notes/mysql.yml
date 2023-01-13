@@ -1,0 +1,75 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mysql-nfs
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteMany
+  mountOptions:
+    - hard
+    - nfsvers=4.1
+  nfs:
+    path: /data
+    server: 10.128.0.20
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: mysql-nfs
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 500Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql
+  labels:
+    app: mysql-wordpress
+spec:
+  ports:
+    - port: 3306
+  selector:
+    app: mysql-wordpress
+    product: mysql
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+  labels:
+    app: mysql-wordpress
+spec:
+  selector:
+    matchLabels:
+      app: mysql-wordpress
+      product: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql-wordpress
+        product: mysql
+    spec:
+      containers:
+      - image: mysql
+        name: mysql-container
+        env:
+        - name: MYSQL_DATABASE
+          value: wordpress
+        - name: MYSQL_ROOT_PASSWORD
+          value: password 
+        ports:
+        - containerPort: 3306
+          name: mysql
+        volumeMounts:
+        - name: mysql-storage
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: mysql-storage
+        persistentVolumeClaim:
+          claimName: mysql-nfs

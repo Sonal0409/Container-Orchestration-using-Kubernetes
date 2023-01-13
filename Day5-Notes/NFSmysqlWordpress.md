@@ -76,8 +76,11 @@ Note: The below section may change if you have a different NFS server and share 
 
 
 kubectl get all
+
 kubectl get pv
+
 kubectl get pvc
+
 kubectl get pods
 
 ## Create a WordPress manifest file and deploy it using host-path-based persistent volume
@@ -89,8 +92,11 @@ kubectl apply -f https://raw.githubusercontent.com/Sonal0409/Container-Orchestra
 ...
 
 kubectl get all
+
 kubectl get pv
+
 kubectl get pvc
+
 kubectl get pods
 
 Then, open the browser and put the below URL to access the WordPress application

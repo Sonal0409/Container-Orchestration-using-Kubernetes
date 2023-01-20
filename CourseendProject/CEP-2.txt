@@ -7,11 +7,28 @@ https://github.com/Sonal0409/Container-Orchestration-using-Kubernetes/tree/main/
 
 Step 2: Create a namespace cep-project2
 
-kubectl create namespace cep-project2
+kubectl create namespace cep-project2 -l slearn: cep-project2
 
 Step 3: create a network policy that allows all the pods in cep-project2 can communicate with each but not from other namespaces
 
 https://github.com/Sonal0409/Container-Orchestration-using-Kubernetes/tree/main/Day%203%20-%20Notes/Networking/policies
+
+OR
+
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+name: allow-traffic-in-ns
+namespace: cep-project2
+spec:
+podSelector: {}
+policyTypes:
+ - Ingress
+ingress:
+ - from:
+    - namespaceSelector:
+        matchLabels:
+          slearn: cep-project2
 
 Step 4: Create a User 3, generate certificate, generate key and copy it in worker node.
 

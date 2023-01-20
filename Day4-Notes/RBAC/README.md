@@ -23,7 +23,9 @@ sudo openssl genrsa -out user3.key 2048
 sudo openssl req -new -key user3.key -out user3.csr
 
 Enter any details like:
+
 •	Organization Name: namespace
+
 •	Common Name: user3
 
 # Run the following command to link an identity to a private key using a digital signature.
@@ -32,21 +34,13 @@ sudo openssl x509 -req -in user3.csr -CA /etc/kubernetes/pki/ca.crt -CAkey /etc/
 
 # Creating role
 
-To create a role, add the following code to the role.yaml file.
+To create a role, 
 
-kind: Role
-apiVersion: rbac.authorization.k8s.io/v1
-metadata:       
-   namespace: role
-   name: user3-role    
-rules:
-- apiGroups: ["", "extensions", "apps"]    
-  resources: ["deployments", "pods", "services"]
-  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+...
 
-# Create a role by using the following command:
+kubectl create -f 
 
-kubectl create -f role.yaml
+
 
 kubectl get roles -n role
 

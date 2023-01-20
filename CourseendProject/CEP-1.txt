@@ -17,10 +17,14 @@ Step 4: Create a cluster role binding to the service account Sandry and give acc
 
 kubectl create clusterrolebinding sandry-access --serviceaccount=cep-project1:sandry --clusterrole=cluster-admin
 
-Step 5: Prepare Worker node 3 to be NFS server
+Step 5: Prepare master node to be NFS server and worker node2 to be the NFS client
+
+https://github.com/Sonal0409/Container-Orchestration-using-Kubernetes/blob/main/Day5-Notes/NFSmysqlWordpress.md
 
 Step 6: Create YAMl to deploy mysql pods, Create service of clusterIP to access mysql pods
 Create PV and PVC for NFS. Mkae sure mysql pod using NFS PVC
+
+https://github.com/Sonal0409/Container-Orchestration-using-Kubernetes/blob/main/Day5-Notes/NFSmysqlWordpress.md
 
 Step 7: Create YAML to deploy wordpress pods, Create service of type NodePort to access it from browser.
 Create PV and PVC to save wordpress pod data.

@@ -1,0 +1,36 @@
+
+CEP-1
+
+Step 1: Deploy the dashboard
+
+kubectl create -f https://raw.githubusercontent.com/sonal0409ORG/educka/master/dashboard/dashboard-insecure-v2.4.0.yml
+
+Step 2: Create a namespace cep-project1
+
+    kubectl create namespace cep-project1 -l slearn=project1
+
+Step 3: Create a service Account with name as Sandry and namespace = cep-project1
+
+kubectl create serviceaccount sandry --namespace cep-project1
+ 
+Step 4: Create a cluster role binding to the service account Sandry and give access as cluster admin role 
+
+kubectl create clusterrolebinding sandry-access --serviceaccount=cep-project1:sandry --clusterrole=cluster-admin
+
+Step 5: Prepare Worker node 3 to be NFS server
+
+Step 6: Create YAMl to deploy mysql pods, Create service of clusterIP to access mysql pods
+Create PV and PVC for NFS. Mkae sure mysql pod using NFS PVC
+
+Step 7: Create YAML to deploy wordpress pods, Create service of type NodePort to access it from browser.
+Create PV and PVC to save wordpress pod data.
+
+https://github.com/Sonal0409/Container-Orchestration-using-Kubernetes/blob/main/Day5-Notes/NFSmysqlWordpress.md
+
+Step 8:
+Create secret to pass data to mysql pod and configMaps volume to pass data to wordpress pod.
+
+https://raw.githubusercontent.com/sonal0409ORG/educka/master/examples/wordpress.yaml
+
+
+

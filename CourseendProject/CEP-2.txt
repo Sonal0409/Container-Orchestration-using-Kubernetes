@@ -1,0 +1,18 @@
+CEP-2
+
+Step 1:
+Take backup of ETCD 
+
+https://github.com/Sonal0409/Container-Orchestration-using-Kubernetes/tree/main/Day4-Notes/ETCD
+
+Step 2: Create a namespace cep-project2
+
+kubectl create namespace cep-project2
+
+Step 3: Create a User 3, generate certificate, generate key and copy it in worker node.
+
+https://github.com/Sonal0409/Container-Orchestration-using-Kubernetes/tree/main/Day4-Notes/RBAC
+
+Step 4: Upgrade kubernetes cluster:
+
+https://github.com/Sonal0409/Container-Orchestration-using-Kubernetes/blob/main/Day4-Notes/upgrade-cluster/upgrade.txt

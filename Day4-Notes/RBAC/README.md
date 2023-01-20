@@ -46,7 +46,7 @@ kubectl get roles -n role
 
 Create rolebinding by using the following command:
 
-kubectl create -f 
+kubectl create -f https://raw.githubusercontent.com/Sonal0409/Container-Orchestration-using-Kubernetes/main/Day4-Notes/RBAC/rolebinding.yml
 
 kubectl get rolebinding -n role
 

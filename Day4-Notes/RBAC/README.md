@@ -38,34 +38,15 @@ To create a role,
 
 ...
 
-kubectl create -f 
-
-
+kubectl create -f https://raw.githubusercontent.com/Sonal0409/Container-Orchestration-using-Kubernetes/main/Day4-Notes/RBAC/role.yml
 
 kubectl get roles -n role
 
 # Creating a rolebinding
 
-To create a rolebinding, add the following code to the rolebinding.yaml file.
+Create rolebinding by using the following command:
 
-kind: RoleBinding
-apiVersion: rbac.authorization.k8s.io/v1
-metadata:
- name: role-test
- namespace: role
-subjects:
-- kind: User
-  name: user3
-  apiGroup: ""
-roleRef:
-  kind: Role
-  name: user3-role
-  apiGroup: ""
-  
-  
-  # Create rolebinding by using the following command:
-
-kubectl create -f rolebinding.yaml
+kubectl create -f 
 
 kubectl get rolebinding -n role
 

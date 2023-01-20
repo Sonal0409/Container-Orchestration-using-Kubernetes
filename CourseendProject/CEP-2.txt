@@ -9,10 +9,14 @@ Step 2: Create a namespace cep-project2
 
 kubectl create namespace cep-project2
 
-Step 3: Create a User 3, generate certificate, generate key and copy it in worker node.
+Step 3: create a network policy that allows all the pods in cep-project2 can communicate with each but not from other namespaces
+
+https://github.com/Sonal0409/Container-Orchestration-using-Kubernetes/tree/main/Day%203%20-%20Notes/Networking/policies
+
+Step 4: Create a User 3, generate certificate, generate key and copy it in worker node.
 
 https://github.com/Sonal0409/Container-Orchestration-using-Kubernetes/tree/main/Day4-Notes/RBAC
 
-Step 4: Upgrade kubernetes cluster:
+Step 5: Upgrade kubernetes cluster:
 
 https://github.com/Sonal0409/Container-Orchestration-using-Kubernetes/blob/main/Day4-Notes/upgrade-cluster/upgrade.txt

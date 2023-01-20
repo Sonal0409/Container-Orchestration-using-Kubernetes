@@ -74,7 +74,7 @@ cd ..
 
 cat .kube/config
 
-# Paste the copied config file into the client machine.
+# Paste the copied config file into the client machine in root directory iteself.
 
 vi myconf
 
@@ -102,9 +102,13 @@ cd ..
 # Run the following commands to verify roles we have generated:
 
 kubectl get pods --kubeconfig=myconf
+
 kubectl create deployment test --image=docker.io/httpd -n role --kubeconfig=myconf
+
 kubectl get pods --kubeconfig=myconf
+
 kubectl get deployment --kubeconfig=myconf
+
 
 The worker node can create, update, remove, and list pods, services, and deployments after using the master config settings.
 

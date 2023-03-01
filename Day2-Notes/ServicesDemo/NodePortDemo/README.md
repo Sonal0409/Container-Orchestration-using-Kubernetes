@@ -4,7 +4,7 @@ Lab Execution Steps:
 Delete all exisitng replicaSet
 ==============================
 
-kubectl delete replicaset myrs
+kubectl delete all --all
 
 Create new replicaSet and Nodeport Service
 ===============================

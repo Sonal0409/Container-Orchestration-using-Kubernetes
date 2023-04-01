@@ -12,7 +12,7 @@ spec:
         path: "/"
         backend:
           service:
-            name: servic1
+            name: service1
             port:
               number: 80
   - host: website02.example.com
@@ -22,6 +22,6 @@ spec:
         path: "/"
         backend:
           service:
-            name: servic2
+            name: service2
             port:
               number: 80

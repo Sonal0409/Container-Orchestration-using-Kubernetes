@@ -1,0 +1,20 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: deploy-v2
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: kubeserve
+      version: v2
+  template:
+    metadata:
+      name: deploy-v2
+      labels:
+        app: kubeserve
+        version: v2
+    spec:
+      containers:
+       - name: app
+         image: leaddevops/kubeserve:v2

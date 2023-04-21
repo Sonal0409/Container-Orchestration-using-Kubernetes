@@ -24,6 +24,7 @@ kind: Service
 apiVersion: v1
 metadata:
    name: service-canary
+   verison: v1
 spec:
   type: NodePort
   ports:

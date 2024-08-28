@@ -103,6 +103,12 @@ cd ..
 
 kubectl get pods --kubeconfig=myconf
 
+Change context to make use of user3
+kubectl config use-context user3-context --kubeconfig=myconf
+
+Check the context
+kubectl config get-contexts --kubeconfig=myconf
+
 kubectl create deployment test --image=docker.io/httpd -n role --kubeconfig=myconf
 
 kubectl get pods --kubeconfig=myconf

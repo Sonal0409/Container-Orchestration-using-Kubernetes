@@ -12,7 +12,7 @@ spec:
     - nfsvers=4.1
   nfs:
     path: /data
-    server: 10.128.0.20
+    server: 18.226.166.192
 ---
 kind: PersistentVolumeClaim
 apiVersion: v1
